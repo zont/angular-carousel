@@ -1,0 +1,43 @@
+.carousel {
+	position: relative;
+	width: 220px;
+	height: 175px;
+	overflow: hidden;
+}
+
+.item {
+	width: 200px;
+	height: 20px;
+	padding: 10px;
+	text-align: center;
+	background-color: #dddddd;
+	margin-bottom: 5px;
+}
+
+.focused {
+	background-color: #ffdddd;
+}
+
+.carousel3 {
+	height: 130px;
+}
+
+.yesNo,
+.yes,
+.no {
+	width: 100px;
+	height: 30px;
+}
+
+.yes {
+	float: left;
+	background-color: green;
+}
+.no {
+	float: left;
+	background-color: red;
+}
+
+.carouselItemsHolder {
+	-webkit-transition: all ease-in-out .5s;
+}

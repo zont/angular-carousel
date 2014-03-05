@@ -1,0 +1,81 @@
+<!doctype html>
+<html ng-app="test">
+<head>
+	<title>test</title>
+	<meta charset="utf-8" />
+	
+	<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+	<div ng-controller="mainCtrl">
+		<input type="button" ng-click="$broadcast('carouselPrev', 'test1');" value="Prev">
+		<input type="button" ng-click="$broadcast('carouselNext', 'test1');" value="Next">
+		<carousel name="test1" loop="false" model="currentItem" direction="vertical">
+			<div carousel-item ng-repeat="item in model" model="item" class="item">
+				{{ item }}
+			</div>
+		</carousel>
+		
+		<br>
+		<input type="button" ng-click="$broadcast('carouselPrev', 'test2');" value="Prev">
+		<input type="button" ng-click="$broadcast('carouselNext', 'test2');" value="Next">
+		<carousel name="test2" loop="true" model="currentItem2" direction="vertical">
+			<div carousel-item ng-repeat="item in model2" model="item" class="item">
+				{{ item.value }}
+			</div>
+		</carousel>
+		
+		<br>
+		<input type="button" ng-click="$broadcast('carouselPrev', 'fixed');" value="Prev">
+		<input type="button" ng-click="$broadcast('carouselNext', 'fixed');" value="Next">
+		<carousel name="fixed" loop="true" model="currentItemFixed" direction="vertical" fixed="true" class="carousel3">
+			<div carousel-item ng-repeat="item in model" model="item" class="item">
+				{{ item }}
+			</div>
+		</carousel>
+		
+		<br>
+		<input type="button" ng-click="$broadcast('carouselPrev', 'test3');" value="Prev">
+		<input type="button" ng-click="$broadcast('carouselNext', 'test3');" value="Next">
+		<carousel name="test3" loop="true" model="currentItem3" direction="horizontal" class="yesNo">
+			<div carousel-item model="model3[0]" class="yes">{{ model3[0] }}</div>
+			<div carousel-item model="model3[1]" class="no">{{ model3[1] }}</div>
+		</carousel>
+		
+		<br>
+		<input type="button" ng-click="show();" value="Log all models (console)">
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+	<script src="../carousel.js"></script>
+	<script>
+	angular.module('test', ['carousel'])
+	.controller('mainCtrl', ['$scope', function($scope) {
+		$scope.model = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+		$scope.currentItem = $scope.model[1];
+		$scope.currentItemFixed = $scope.model[9];
+		
+		$scope.model2 = [
+			{value: 1},
+			{value: 2},
+			{value: 3},
+			{value: 4},
+			{value: 5},
+			{value: 6},
+			{value: 7},
+			{value: 8},
+			{value: 9},
+			{value: 10}
+		];
+		$scope.currentItem2 = $scope.model2[2];
+		
+		$scope.model3 = ['Yes', 'No'];
+		$scope.currentItem3 = $scope.model3[0];
+		
+		$scope.show = function() {
+			console.log($scope.currentItem, $scope.currentItem2, $scope.currentItemFixed, $scope.currentItem3);
+		}
+	}]);
+	</script>
+</body>
+</html>
